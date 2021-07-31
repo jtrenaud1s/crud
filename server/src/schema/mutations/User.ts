@@ -26,7 +26,7 @@ export const DELETE_USER = {
     const id = args.id;
     await Users.delete(id);
 
-    return { succes: true, message: "User deleted" };
+    return { success: true, message: "User deleted" };
   },
 };
 

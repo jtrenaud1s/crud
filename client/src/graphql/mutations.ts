@@ -9,3 +9,22 @@ export const CREATE_USER = gql`
     }
   }
 `;
+
+export const DELETE_USER = gql`
+  mutation deleteUser($id: ID!) {
+    deleteUser(id: $id) {
+      success
+      message
+    }
+  }
+`;
+
+
+export const UPDATE_PASSWORD = gql`
+  mutation updatePassword($username: String! $oldPassword: String! $newPassword: String!) {
+    updatePassword(username: $username, oldPassword: $oldPassword, newPassword: $newPassword) {
+      success
+      message
+    }
+  }
+`;

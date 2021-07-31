@@ -4,6 +4,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import "./App.css";
 import CreateUser from "./components/CreateUser";
 import UserList from "./components/UserList";
+import UpdatePassword from "./components/UpdatePassword";
 
 const App = () => {
   const client = new ApolloClient({
@@ -13,6 +14,7 @@ const App = () => {
 
   return (
     <ApolloProvider client={client}>
+      <UpdatePassword />
       <UserList />
       <CreateUser />
     </ApolloProvider>

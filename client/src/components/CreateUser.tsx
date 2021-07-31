@@ -10,6 +10,7 @@ const CreateUser = () => {
   const [createUser, { error }] = useMutation(CREATE_USER);
   return (
     <div className="createUser">
+      {error && <span>{error}</span>}
       <input
         type="text"
         placeholder="name"

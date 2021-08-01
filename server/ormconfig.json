@@ -1,0 +1,16 @@
+{
+    "type": "mysql",
+    "database": "boilerplate",
+    "username": "boilerplate",
+    "password": "password",
+    "logging": false,
+    "synchronize": true,
+    "entities": ["src/entities/**/*.ts"],
+    "migrations": ["src/migrations/**/*.ts"],
+    "subscribers": ["src/subscriber/**/*.ts"],
+    "cli": {
+        "entitiesDir": "src/entity",
+        "migrationsDir": "src/migrations",
+        "subscriberDir": "src/subscribers"
+    }
+}

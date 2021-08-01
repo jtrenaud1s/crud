@@ -1,24 +1,27 @@
-import React from "react";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import React, { useEffect, useState } from "react";
+import { setAccessToken } from "./accessToken";
+import Routes from "./Routes";
 
-import "./App.css";
-import CreateUser from "./components/CreateUser";
-import UserList from "./components/UserList";
-import UpdatePassword from "./components/UpdatePassword";
+interface Props {}
 
-const App = () => {
-  const client = new ApolloClient({
-    uri: "http://localhost:3001/graphql",
-    cache: new InMemoryCache(),
-  });
+const App: React.FC<Props> = () => {
+  const [loading, setLoading] = useState(true);
 
-  return (
-    <ApolloProvider client={client}>
-      <UpdatePassword />
-      <UserList />
-      <CreateUser />
-    </ApolloProvider>
-  );
+  useEffect(() => {
+    fetch("http://localhost:3001/refresh_token", {
+      method: "POST",
+      credentials: "include",
+    }).then(async (x) => {
+      const {accessToken} = await x.json();
+      setAccessToken(accessToken)
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) {
+    return <div>loading...</div>;
+  }
+  return <Routes />;
 };
 
 export default App;

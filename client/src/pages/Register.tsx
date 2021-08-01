@@ -22,7 +22,8 @@ const Register: React.FC<RouteComponentProps> = ({ history }) => {
 
         console.log(response);
         history.push("/");
-      }}>
+      }}
+    >
       <div>
         <input
           value={email}

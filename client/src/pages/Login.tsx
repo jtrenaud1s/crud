@@ -43,7 +43,8 @@ const Login: React.FC<RouteComponentProps> = ({ history }) => {
         }
 
         history.push("/");
-      }}>
+      }}
+    >
       <div>
         <input
           value={email}

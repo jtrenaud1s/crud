@@ -1,15 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, ApolloLink, Observable } from "@apollo/client";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  HttpLink,
+  ApolloLink,
+  Observable,
+} from "@apollo/client";
 import { getAccessToken, setAccessToken } from "./accessToken";
 import App from "./App";
-import { TokenRefreshLink } from 'apollo-link-token-refresh';
+import { TokenRefreshLink } from "apollo-link-token-refresh";
 
-import jwt_decode, { JwtPayload } from 'jwt-decode'
+import jwt_decode, { JwtPayload } from "jwt-decode";
 
-
-
-const httpLink = new HttpLink({ uri: 'http://localhost:3001/graphql', credentials: "include"});
+const httpLink = new HttpLink({
+  uri: "http://localhost:3001/graphql",
+  credentials: "include",
+});
 
 const authMiddleware = new ApolloLink(
   (operation, forward) =>
@@ -41,9 +49,6 @@ const authMiddleware = new ApolloLink(
       };
     })
 );
-
-
-
 
 const thing = new TokenRefreshLink({
   accessTokenField: "accessToken",
@@ -84,14 +89,7 @@ const thing = new TokenRefreshLink({
   },
 });
 
-const link = ApolloLink.from([
-  thing,
-  authMiddleware,
-  httpLink,
-]);
-
-
-
+const link = ApolloLink.from([thing, authMiddleware, httpLink]);
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),

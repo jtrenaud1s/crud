@@ -12,8 +12,8 @@ const App: React.FC<Props> = () => {
       method: "POST",
       credentials: "include",
     }).then(async (x) => {
-      const {accessToken} = await x.json();
-      setAccessToken(accessToken)
+      const { accessToken } = await x.json();
+      setAccessToken(accessToken);
       setLoading(false);
     });
   }, []);
